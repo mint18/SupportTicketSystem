@@ -1,0 +1,100 @@
+﻿@TicketSystem.API_HostAddress = https://localhost:7013
+@token = CfDJ8ET3kv6KW-NArwbm-mk0POYsO-P7pRz0R9JX4bLyQVk-oIUvcCpQK6SBh1629KZ2d18x628qs8BeOeLam1rRh89sXd4t9mWhw0zpaZmHZmNVUFsHsc_EyiNOhpj6DJ_GFxk69XA9YaWJaEU8u_dokZF7Vn9XaHO-M5IBhqQreNSza-Nu_rKzfhb5Kc89WLn1eKmufOnqmAvQMNFkvaGFjiL8tug19Qp-A9eAOLRmVj8Ioe2oEuy1vjDEL0b9nF0EVK6M4ZUS8v5I_9VYAb71pSSy_q1BfIGxa2dn79orByPBfX6QO169_V98CYw-BDzedsKrBlaeM7asDdm1AzC6pyVndh72g9dpV8tw6vEOoaDeYvRnmCh4MwdgCjyesJdXgDrAkRAH7XVF1NVExUiIJgLwSNGyW5YpB_o5Xbblqhc5XOC0VuKzB6utuiRIocbZOvfUtHv4K4lL78mhJfi5GYLfCgMJQ_vTOwH8n_AVV7E0iS5Ycvtb0G0foBt9DefC8G5lOhW93-j8VQO5CG02Lvzn_Yov1AWZ1jp6lMo-piHBLBuJ0AJS1XQrq1mg7E-sCMUqyV9YNx__11tx9MTq8QGb43P2sKaFIJUYaoCh-KandK6oMD2Gm1WxQZ9PjVL-hxuX9N7fQvFw_Tzld7UpW6AFldxq9PzwntbLU8Q8BzYFUAPZGcKe5lfKsR8jkCBhSQ
+
+GET {{TicketSystem.API_HostAddress}}/api/ticket
+
+###
+
+POST {{TicketSystem.API_HostAddress}}/api/status
+Content-Type: application/json
+
+{
+  "StatusName": "NewStatus"
+}
+
+###
+
+GET {{TicketSystem.API_HostAddress}}/api/status
+
+###
+
+POST {{TicketSystem.API_HostAddress}}/api/tickets
+Content-Type: application/json
+
+{
+  "title": "Example Ticket Title",
+  "description": "Example Ticket Description"
+}
+
+
+###
+
+GET {{TicketSystem.API_HostAddress}}/api/tickets
+Authorization: Bearer {{token}}
+
+###
+
+GET {{TicketSystem.API_HostAddress}}/api/tickets/152
+
+###
+
+
+PUT {{TicketSystem.API_HostAddress}}/api/tickets/1/status
+Content-Type: application/json
+
+1234
+
+###
+
+PATCH {{TicketSystem.API_HostAddress}}/api/tickets/3
+Content-Type: application/json
+
+{
+
+}
+
+###
+
+DELETE {{TicketSystem.API_HostAddress}}/api/tickets/3
+
+###
+
+POST {{TicketSystem.API_HostAddress}}/api/tickets/4/comments
+Content-Type: application/json
+
+{
+  "content": "Twój komentarz tutaj 2"
+}
+
+###
+
+GET {{TicketSystem.API_HostAddress}}/api/tickets/555/comments
+
+###
+
+GET {{TicketSystem.API_HostAddress}}/api/tickets/4/comments/4
+
+###
+
+
+DELETE {{TicketSystem.API_HostAddress}}/api/tickets/6/comments/5
+
+###
+
+POST {{TicketSystem.API_HostAddress}}/register
+Content-Type: application/json
+
+{
+    "email": "testuser@test.com",
+    "password": "Password1!"
+}
+
+###
+
+POST {{TicketSystem.API_HostAddress}}/api/identity/login
+Content-Type: application/json
+
+{
+    "email": "testuser@test.com",
+    "password": "Password1!"
+}
