@@ -16,7 +16,7 @@ public static class ServiceCollectionExtension
                 .AddFluentValidationAutoValidation();
         services.AddAutoMapper(applicationAssembly);
 
-        services.AddScoped<UserContext>();
+        services.AddScoped<IUserContext, UserContext>();
         services.AddHttpContextAccessor();
     }
 }

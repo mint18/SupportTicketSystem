@@ -41,7 +41,7 @@ app.UseHttpsRedirection();
 //added apps
 app.UseMiddleware<RequestLoggingMiddleware>();
 
-app.MapGroup("api/identity").MapIdentityApi<ApplicationUser>();
+app.MapGroup("api/identity").WithTags("Identity").MapIdentityApi<ApplicationUser>();
 
 app.UseAuthorization();
 

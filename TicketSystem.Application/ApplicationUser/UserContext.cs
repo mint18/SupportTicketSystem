@@ -4,7 +4,7 @@ using TicketSystem.Application.ApplicationUser;
 
 namespace TicketSystem.Application.ApplicationUser;
 
-public class UserContext(IHttpContextAccessor httpContextAccessor)
+public class UserContext(IHttpContextAccessor httpContextAccessor) : IUserContext
 {
     public CurrentUser? GetCurrentUser()
     {
