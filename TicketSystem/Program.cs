@@ -7,6 +7,7 @@ using TicketSystem.Infrastructure.Repositories;
 using TicketSystem.Domain.Entities;
 using Microsoft.OpenApi.Models;
 using TicketSystem.API.Extensions;
+using TicketSystem.Infrastructure.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +38,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// seeders
+
+using var scope = app.Services.CreateScope();
+var roleSeeder = scope.ServiceProvider.GetRequiredService<IRoleSeeder>();
+await roleSeeder.SeedRolesAsync();
 
 //added apps
 app.UseMiddleware<RequestLoggingMiddleware>();

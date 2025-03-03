@@ -1,5 +1,10 @@
 ﻿@TicketSystem.API_HostAddress = https://localhost:7013
-@token = CfDJ8ET3kv6KW-NArwbm-mk0POYsO-P7pRz0R9JX4bLyQVk-oIUvcCpQK6SBh1629KZ2d18x628qs8BeOeLam1rRh89sXd4t9mWhw0zpaZmHZmNVUFsHsc_EyiNOhpj6DJ_GFxk69XA9YaWJaEU8u_dokZF7Vn9XaHO-M5IBhqQreNSza-Nu_rKzfhb5Kc89WLn1eKmufOnqmAvQMNFkvaGFjiL8tug19Qp-A9eAOLRmVj8Ioe2oEuy1vjDEL0b9nF0EVK6M4ZUS8v5I_9VYAb71pSSy_q1BfIGxa2dn79orByPBfX6QO169_V98CYw-BDzedsKrBlaeM7asDdm1AzC6pyVndh72g9dpV8tw6vEOoaDeYvRnmCh4MwdgCjyesJdXgDrAkRAH7XVF1NVExUiIJgLwSNGyW5YpB_o5Xbblqhc5XOC0VuKzB6utuiRIocbZOvfUtHv4K4lL78mhJfi5GYLfCgMJQ_vTOwH8n_AVV7E0iS5Ycvtb0G0foBt9DefC8G5lOhW93-j8VQO5CG02Lvzn_Yov1AWZ1jp6lMo-piHBLBuJ0AJS1XQrq1mg7E-sCMUqyV9YNx__11tx9MTq8QGb43P2sKaFIJUYaoCh-KandK6oMD2Gm1WxQZ9PjVL-hxuX9N7fQvFw_Tzld7UpW6AFldxq9PzwntbLU8Q8BzYFUAPZGcKe5lfKsR8jkCBhSQ
+@token = CfDJ8ET3kv6KW-NArwbm-mk0POZye2dLRMucJKUhhh8v9rhoYNQiYRRa0q80y5miQT9uo0AdZE_wemLCaMiqlBfpUX5hH4WvDTFFQIuxjNOK5Ig4Lgkjw0-OOjO48oQW-CohXj4rTUxXZ6ZihFQK6B6B-IA5c01o2uSzBk5Mvyg1X2NNXPBCCDNC0xV_CAArlM0lKY8OO71D83RMPg9_2NTNxGSHWD_SI73Jmd9qG5YtBdZddoJIs6Asc7v0ADNU5CuBBgrCbtBRlgL-JiOqdtvb9PmQf9btUe2cKSAfqmJzsJkvxoU9dy9yzo_2pHKyV2DaRDpjP--M0BZPPEQmj0Ib2aDLES2Fs505vahQJfzuM_DMTyF0_yZb1dEYXYb4K28KfJGseEg07G5IeMG3o2lh0Pbh97rVhdPNAI2D6HnTr_WYW60FWlT_vbwFJbhhFkUfj-of277C1FdQ6XzPIjWGsHIYvMXryDifb0Ky_JqhY3ISkG7huY2qqlBkAcDWoF5V2bHdtmKimwSqNaizrrgToiyUsM8uLkMbGDdv6vmOC7yK63J7sp_eReWK_skSfIyp3wcvnubperG_37OHQDAfGrHIBD670A8qmAajaqh6QZbS-jCqSliApt5mQzDbFKfS1VeWfzciV_lbUmjS-f94FVKMGmgMHMIVCBZacYw_IvqOf6NOHypBSryyRyXeaNAZ0JMjg9z2zR9Y7YadKpa0JRtmIvF-8jlzAIMJvCJjOYjc7Byn7mJ8BdHpX2uLTYVakaLT1uXEBaifp3JVLV-CP3MsswnEEUhFwJa4E6OWBPeA
+
+
+
+
+
 
 GET {{TicketSystem.API_HostAddress}}/api/ticket
 
@@ -55,7 +60,8 @@ Content-Type: application/json
 
 ###
 
-DELETE {{TicketSystem.API_HostAddress}}/api/tickets/3
+DELETE {{TicketSystem.API_HostAddress}}/api/tickets/12
+Authorization: Bearer {{token}}
 
 ###
 
@@ -81,11 +87,11 @@ DELETE {{TicketSystem.API_HostAddress}}/api/tickets/6/comments/5
 
 ###
 
-POST {{TicketSystem.API_HostAddress}}/register
+POST {{TicketSystem.API_HostAddress}}/api/identity/register
 Content-Type: application/json
 
 {
-    "email": "testuser@test.com",
+    "email": "admin@test.com",
     "password": "Password1!"
 }
 
@@ -95,6 +101,6 @@ POST {{TicketSystem.API_HostAddress}}/api/identity/login
 Content-Type: application/json
 
 {
-    "email": "testuser@test.com",
+    "email": "admin@test.com",
     "password": "Password1!"
 }

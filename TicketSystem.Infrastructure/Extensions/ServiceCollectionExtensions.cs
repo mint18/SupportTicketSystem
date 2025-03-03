@@ -6,6 +6,7 @@ using TicketSystem.Domain.Repositories;
 using TicketSystem.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using TicketSystem.Domain.Entities;
+using TicketSystem.Infrastructure.Seeders;
 
 namespace TicketSystem.Infrastructure.Extensions;
 
@@ -23,7 +24,9 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<IStatusRepository, StatusRepository>();
         services.AddScoped<ITicketRepository, TicketRepository>();
-        
+
+        services.AddScoped<IRoleSeeder, RoleSeeder>();
+
     }
 
 }

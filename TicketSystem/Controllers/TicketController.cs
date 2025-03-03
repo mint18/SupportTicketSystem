@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using TicketSystem.Application.Tickets.Commands;
 using TicketSystem.Application.Tickets.Dtos;
 using TicketSystem.Application.Tickets.Queries;
+using TicketSystem.Domain.Constants;
 
 namespace TicketSystem.API.Controllers
 {
@@ -81,6 +82,7 @@ namespace TicketSystem.API.Controllers
         }
 
         [HttpDelete("{ticketId}")]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<IActionResult> DeleteTicket(int ticketId)
         {
             try
