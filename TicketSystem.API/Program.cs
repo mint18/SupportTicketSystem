@@ -43,7 +43,9 @@ app.UseHttpsRedirection();
 
 using var scope = app.Services.CreateScope();
 var roleSeeder = scope.ServiceProvider.GetRequiredService<IRoleSeeder>();
+var statusSeeder = scope.ServiceProvider.GetRequiredService<IStatusSeeder>();
 await roleSeeder.SeedRolesAsync();
+await statusSeeder.SeedStatusesAsync();
 
 //added apps
 app.UseMiddleware<RequestLoggingMiddleware>();

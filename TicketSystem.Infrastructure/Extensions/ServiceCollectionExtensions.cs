@@ -26,6 +26,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ITicketRepository, TicketRepository>();
 
         services.AddScoped<IRoleSeeder, RoleSeeder>();
+        services.AddScoped<IStatusSeeder, StatusSeeder>();
 
     }
 
