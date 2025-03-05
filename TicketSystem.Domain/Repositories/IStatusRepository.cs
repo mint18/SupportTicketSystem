@@ -9,4 +9,5 @@ public interface IStatusRepository
 
     Task<Status?> GetByIdAsync(int id);
     Task<IEnumerable<Status>> GetAllAsync();
+    Task<Status?> GetByNameAsync(string name);
 }

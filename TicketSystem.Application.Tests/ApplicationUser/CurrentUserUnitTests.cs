@@ -6,7 +6,7 @@ using FluentAssertions;
 using System.Collections.Generic;
 using TicketSystem.Domain.Constants;
 
-public class CurrentUserTests
+public class CurrentUserUnitTests
 {
 
     [Fact]

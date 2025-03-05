@@ -4,21 +4,13 @@ using MediatR;
 using TicketSystem.Domain.Entities;
 using TicketSystem.Domain.Repositories;
 
-public class CreateTicketCommandHandler : IRequestHandler<CreateTicketCommand, int>
+public class CreateTicketCommandHandler(ITicketRepository ticketRepository, 
+    IStatusRepository statusRepository) : IRequestHandler<CreateTicketCommand, int>
 {
-    private readonly ITicketRepository _ticketRepository;
-    private readonly IStatusRepository _statusRepository;
-
-    public CreateTicketCommandHandler(ITicketRepository ticketRepository, IStatusRepository statusRepository)
-    {
-        _ticketRepository = ticketRepository;
-        _statusRepository = statusRepository;
-    }
-
     public async Task<int> Handle(CreateTicketCommand request, CancellationToken cancellationToken)
     {
-        var status = await _statusRepository.GetByIdAsync(1);
-        if (status == null) throw new Exception("Status o ID 1 nie istnieje.");
+        var status = await statusRepository.GetByNameAsync("Open");
+        if (status == null) throw new Exception("Status 'Open' nie istnieje.");
 
         var ticket = new Ticket
         {
@@ -28,7 +20,7 @@ public class CreateTicketCommandHandler : IRequestHandler<CreateTicketCommand, i
             Status = status
         };
 
-        var createdTicket = await _ticketRepository.AddAsync(ticket);
+        var createdTicket = await ticketRepository.AddAsync(ticket);
         return createdTicket.Id;
     }
 }

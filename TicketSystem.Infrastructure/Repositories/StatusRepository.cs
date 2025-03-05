@@ -27,6 +27,12 @@ public class StatusRepository : IStatusRepository
         return await _context.Statuses.FindAsync(id);
     }
 
+    public async Task<Status?> GetByNameAsync(string name)
+    {
+        return await _context.Statuses
+            .FirstOrDefaultAsync(s => s.StatusName == name);
+    }
+
     public async Task<IEnumerable<Status>> GetAllAsync()
     {
         return await _context.Statuses.ToListAsync();

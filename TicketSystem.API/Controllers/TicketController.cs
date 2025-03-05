@@ -11,20 +11,18 @@ namespace TicketSystem.API.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Authorize]
-    public class TicketsController : ControllerBase
+    public class TicketsController(IMediator mediator) : ControllerBase
     {
-        private readonly IMediator _mediator;
-
-        public TicketsController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
         [HttpPost]
         public async Task<IActionResult> CreateTicket([FromBody] CreateTicketDto createTicketDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var command = new CreateTicketCommand(createTicketDto.Title, createTicketDto.Description);
-            var createdId = await _mediator.Send(command);
+            var createdId = await mediator.Send(command);
             return CreatedAtAction(nameof(CreateTicket), new { id = createdId }, new { id = createdId });
         }
 
@@ -32,7 +30,7 @@ namespace TicketSystem.API.Controllers
         public async Task<IActionResult> GetTickets()
         {
             var query = new GetTicketsQuery();
-            var tickets = await _mediator.Send(query);
+            var tickets = await mediator.Send(query);
             return Ok(tickets);
         }
 
@@ -42,7 +40,7 @@ namespace TicketSystem.API.Controllers
             try
             {
                 var query = new GetTicketByIdQuery(ticketId);
-                var ticket = await _mediator.Send(query);
+                var ticket = await mediator.Send(query);
                 return Ok(ticket);
             }
             catch (KeyNotFoundException ex)
@@ -57,7 +55,7 @@ namespace TicketSystem.API.Controllers
             var command = new UpdateTicketStatusCommand(ticketId, statusId);
             try
             {
-                await _mediator.Send(command);
+                await mediator.Send(command);
                 return NoContent();
             }
             catch (KeyNotFoundException ex)
@@ -72,7 +70,7 @@ namespace TicketSystem.API.Controllers
             var command = new UpdateTicketCommand(ticketId, updateTicketDto.Title, updateTicketDto.Description);
             try
             {
-                await _mediator.Send(command);
+                await mediator.Send(command);
                 return NoContent();
             }
             catch (KeyNotFoundException ex)
@@ -87,7 +85,7 @@ namespace TicketSystem.API.Controllers
         {
             try
             {
-                await _mediator.Send(new DeleteTicketCommand(ticketId));
+                await mediator.Send(new DeleteTicketCommand(ticketId));
                 return NoContent();
             }
             catch (Exception ex)
