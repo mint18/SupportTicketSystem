@@ -2,32 +2,25 @@
 using TicketSystem.Application.Tickets.Commands;
 using TicketSystem.Domain.Repositories;
 
-public class UpdateTicketStatusCommandHandler : IRequestHandler<UpdateTicketStatusCommand>
+public class UpdateTicketStatusCommandHandler(
+    ITicketRepository ticketRepository,
+    IStatusRepository statusRepository) : IRequestHandler<UpdateTicketStatusCommand>
 {
-    private readonly ITicketRepository _ticketRepository;
-    private readonly IStatusRepository _statusRepository;
-
-    public UpdateTicketStatusCommandHandler(ITicketRepository ticketRepository, IStatusRepository statusRepository)
-    {
-        _ticketRepository = ticketRepository;
-        _statusRepository = statusRepository;
-    }
-
     public async Task Handle(UpdateTicketStatusCommand request, CancellationToken cancellationToken)
     {
-        var ticket = await _ticketRepository.GetByIdAsync(request.TicketId);
+        var ticket = await ticketRepository.GetByIdAsync(request.TicketId);
         if (ticket == null)
         {
             throw new KeyNotFoundException($"Ticket with ID {request.TicketId} not found.");
         }
 
-        var status = await _statusRepository.GetByIdAsync(request.StatusId);
+        var status = await statusRepository.GetByIdAsync(request.StatusId);
         if (status == null)
         {
             throw new KeyNotFoundException($"Status with ID {request.StatusId} not found.");
         }
 
         ticket.Status = status;
-        await _ticketRepository.UpdateAsync(ticket);
+        await ticketRepository.UpdateAsync(ticket);
     }
 }

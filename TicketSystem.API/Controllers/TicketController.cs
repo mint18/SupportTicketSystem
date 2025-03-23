@@ -50,6 +50,7 @@ namespace TicketSystem.API.Controllers
         }
 
         [HttpPut("{ticketId}/status")]
+        [Authorize(Roles = $"{Roles.Manager},{Roles.Admin}")]
         public async Task<IActionResult> UpdateTicketStatus(int ticketId, [FromBody] int statusId)
         {
             var command = new UpdateTicketStatusCommand(ticketId, statusId);
