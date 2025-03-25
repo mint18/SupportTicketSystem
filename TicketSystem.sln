@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketSystem.API", "TicketS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketSystem.Application.Tests", "TicketSystem.Application.Tests\TicketSystem.Application.Tests.csproj", "{C8F7A532-EF90-4A22-AA74-2FAC0DC54B59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketSystem.API.Tests", "TicketSystem.API.Tests\TicketSystem.API.Tests.csproj", "{6FA9DDD9-56A4-4DF1-817C-249BBEEEDEC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketSystem.API.Tests", "TicketSystem.API.Tests\TicketSystem.API.Tests.csproj", "{6FA9DDD9-56A4-4DF1-817C-249BBEEEDEC9}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "clientapp", "ClientApp\clientapp.esproj", "{7B5CBE4E-7CF6-4DE0-867E-50F502664700}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,12 @@ Global
 		{6FA9DDD9-56A4-4DF1-817C-249BBEEEDEC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FA9DDD9-56A4-4DF1-817C-249BBEEEDEC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FA9DDD9-56A4-4DF1-817C-249BBEEEDEC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B5CBE4E-7CF6-4DE0-867E-50F502664700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B5CBE4E-7CF6-4DE0-867E-50F502664700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B5CBE4E-7CF6-4DE0-867E-50F502664700}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7B5CBE4E-7CF6-4DE0-867E-50F502664700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B5CBE4E-7CF6-4DE0-867E-50F502664700}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B5CBE4E-7CF6-4DE0-867E-50F502664700}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
