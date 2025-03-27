@@ -27,6 +27,7 @@ namespace TicketSystem.API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetTickets()
         {
             var query = new GetTicketsQuery();
