@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ticketService } from '../../../api/services/ticketService';
 import { TicketResponseDto } from '../../../api/types';
+import { Link } from 'react-router-dom';
 
 const TicketList = () => {
     const [tickets, setTickets] = useState<TicketResponseDto[]>([]);
@@ -23,25 +24,49 @@ const TicketList = () => {
         fetchTickets();
     }, []);
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
+    if (loading) return <div>Ładowanie...</div>;
+    if (error) return <div className="text-red-500">{error}</div>;
 
     return (
         <div>
-            <h1>Tickets</h1>
+            <div className="flex justify-between items-center mb-6">
+                <h1 className="text-2xl font-bold">Zgłoszenia</h1>
+                <Link 
+                    to="/tickets/create" 
+                    className="bg-accent-gold text-black px-4 py-2 rounded"
+                >
+                    Nowe zgłoszenie
+                </Link>
+            </div>
+            
             {tickets.length === 0 ? (
-                <p>No tickets found</p>
+                <p>Brak zgłoszeń</p>
             ) : (
-                <ul>
+                <div className="grid gap-4">
                     {tickets.map((ticket) => (
-                        <li key={ticket.id}>
-                            <h3>{ticket.title}</h3>
-                            <p>{ticket.description}</p>
-                            <p>Status: {ticket.statusName || 'No status'}</p>
-                            <p>Created: {new Date(ticket.createdDate).toLocaleDateString()}</p>
-                        </li>
+                        <div 
+                            key={ticket.id} 
+                            className="bg-dark-secondary p-4 rounded border border-gray-700"
+                        >
+                            <Link to={`/tickets/${ticket.id}`} className="block">
+                                <h3 className="text-xl font-semibold">{ticket.title}</h3>
+                                <div className="flex justify-between mt-2">
+                                    <span className="text-gray-400">
+                                        Status: {ticket.statusName || 'Brak'}
+                                    </span>
+                                    <span className="text-gray-400">
+                                        {new Date(ticket.createdDate).toLocaleDateString()}
+                                    </span>
+                                </div>
+                                {ticket.assignedToName && (
+                                    <div className="mt-2 text-green-400">
+                                        Przypisane do: {ticket.assignedToName}
+                                    </div>
+                                )}
+                            </Link>
+                        </div>
                     ))}
-                </ul>
+                </div>
             )}
         </div>
     );

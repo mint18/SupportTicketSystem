@@ -5,26 +5,22 @@ using TicketSystem.Infrastructure.Persistence;
 
 namespace TicketSystem.Infrastructure.Repositories;
 
-public class TicketRepository : ITicketRepository
+public class TicketRepository(TicketsDbContext context) : ITicketRepository
 {
-    private readonly TicketsDbContext _context;
-
-    public TicketRepository(TicketsDbContext context)
-    {
-        _context = context;
-    }
-
     public async Task<Ticket> AddAsync(Ticket ticket)
     {
-        _context.Tickets.Add(ticket);
-        await _context.SaveChangesAsync();
+        context.Tickets.Add(ticket);
+        await context.SaveChangesAsync();
         return ticket;
     }
 
-    public async Task<IEnumerable<Ticket>> GetAllAsync()
+    public async Task<IEnumerable<Ticket>> GetAllAsync(string userId, bool isAdmin)
     {
-        return await _context.Tickets
+        return await context.Tickets
             .Include(t => t.Status)
+            .Where(t => isAdmin
+                ? (t.AssignedToId == userId || t.CreatedById == userId)
+                : t.CreatedById == userId)
             .ToListAsync();
     }
 
@@ -35,20 +31,23 @@ public class TicketRepository : ITicketRepository
 
     public async Task<Ticket?> GetByIdAsync(int ticketId)
     {
-        return await _context.Tickets
+        return await context.Tickets
+            .Include(t => t.Status)
             .Include(t => t.Comments)
+            .Include(t => t.CreatedBy)
+            .Include(t => t.AssignedTo)
             .FirstOrDefaultAsync(t => t.Id == ticketId);
     }
 
     public async Task UpdateAsync(Ticket ticket)
     {
-        _context.Tickets.Update(ticket);
-        await _context.SaveChangesAsync();
+        context.Tickets.Update(ticket);
+        await context.SaveChangesAsync();
     }
 
     public async Task DeleteAsync(Ticket ticket)
     {
-        _context.Tickets.Remove(ticket);
-        await _context.SaveChangesAsync();
+        context.Tickets.Remove(ticket);
+        await context.SaveChangesAsync();
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TicketSystem.Application.Tickets.Dtos;
+﻿namespace TicketSystem.Application.Tickets.Dtos;
 
 public class TicketResponseDto
 {
@@ -12,5 +6,9 @@ public class TicketResponseDto
     public string Title { get; set; } = default!;
     public string Description { get; set; } = default!;
     public DateTime CreatedDate { get; set; }
-    public string? StatusName { get; set; } 
+    public string? StatusName { get; set; }
+    public string? CreatedById { get; set; }
+    public string? CreatedByName { get; set; }
+    public string? AssignedToId { get; set; }
+    public string? AssignedToName { get; set; }
 }

@@ -1,9 +1,17 @@
 export interface TicketResponseDto {
-    id: number;
-    title: string;
-    description: string;
-    createdDate: string;
-    statusName?: string;
+   id: number;
+   title: string;
+   description: string;
+   createdDate: string;
+   statusName?: string;
+   createdById?: string;
+   createdByName?: string;
+   assignedToId?: string;
+   assignedToName?: string;
+}
+
+export interface AssignTicketRequest {
+   userId: string | null;
 }
 
 export interface User {

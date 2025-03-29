@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TicketSystem.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using TicketSystem.Infrastructure.Persistence;
 namespace TicketSystem.Infrastructure.Migrations
 {
     [DbContext(typeof(TicketsDbContext))]
-    partial class TicketsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250329113314_AddTicketUserRelationships")]
+    partial class AddTicketUserRelationships
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -6,9 +6,9 @@ import MainLayout from './features/layout/MainLayout';
 import ProtectedRoute from './features/common/ProtectedRoute';
 import LoginForm from './features/auth/components/LoginForm';
 import RegisterForm from './features/auth/components/RegisterForm';
+import TicketList from './features/tickets/components/TicketList';
 
-// Tymczasowe komponenty zastępcze - zaimplementujemy je później
-const TicketsList = () => <div>Lista zgłoszeń</div>;
+// Temp components
 const TicketDetails = () => <div>Szczegóły zgłoszenia</div>;
 const CreateTicket = () => <div>Utwórz zgłoszenie</div>;
 const UserAccount = () => <div>Twoje konto</div>;
@@ -23,7 +23,7 @@ function App() {
           
           <Route element={<ProtectedRoute />}>
             <Route element={<MainLayout />}>
-              <Route path="/tickets" element={<TicketsList />} />
+              <Route path="/tickets" element={<TicketList />} />
               <Route path="/tickets/:id" element={<TicketDetails />} />
               <Route path="/tickets/create" element={<CreateTicket />} />
               <Route path="/account" element={<UserAccount />} />

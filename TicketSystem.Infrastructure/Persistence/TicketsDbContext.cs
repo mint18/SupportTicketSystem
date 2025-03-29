@@ -31,5 +31,17 @@ public class TicketsDbContext : IdentityDbContext<ApplicationUser>
             .HasOne(e => e.Ticket)
             .WithMany(t => t.Comments)
             .HasForeignKey("TicketId");
+
+        modelBuilder.Entity<Ticket>()
+            .HasOne(e => e.CreatedBy)
+            .WithMany()
+            .HasForeignKey(e => e.CreatedById)
+            .IsRequired(false);
+
+        modelBuilder.Entity<Ticket>()
+            .HasOne(e => e.AssignedTo)
+            .WithMany()
+            .HasForeignKey(e => e.AssignedToId)
+            .IsRequired(false);
     }
 }

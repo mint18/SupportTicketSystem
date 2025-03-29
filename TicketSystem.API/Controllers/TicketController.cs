@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TicketSystem.Application.ApplicationUser.Queries;
 using TicketSystem.Application.Tickets.Commands;
 using TicketSystem.Application.Tickets.Dtos;
 using TicketSystem.Application.Tickets.Queries;
@@ -96,6 +97,28 @@ namespace TicketSystem.API.Controllers
             }
         }
 
+        [HttpPut("{ticketId}/assign")]
+        [Authorize(Roles = Roles.Admin)]
+        public async Task<IActionResult> AssignTicket(int ticketId, [FromBody] string? userId)
+        {
+            try
+            {
+                await mediator.Send(new AssignTicketCommand(ticketId, userId));
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        [HttpGet("assignable-users")]
+        [Authorize(Roles = Roles.Admin)]
+        public async Task<IActionResult> GetAssignableUsers()
+        {
+            var users = await mediator.Send(new GetAssignableUsersQuery());
+            return Ok(users);
+        }
 
     }
 }
