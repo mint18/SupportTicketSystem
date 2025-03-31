@@ -16,10 +16,9 @@ const LoginForm: React.FC = () => {
         e.preventDefault();
         setError(null);
         setLoading(true);
-
+    
         try {
             const response = await authService.login({ email, password });
-            localStorage.setItem('authToken', response.token);
             dispatch(login({
                 token: response.token,
                 user: response.user
